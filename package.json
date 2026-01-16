@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod --base-href /portfolio/ && copy dist\\portfolio\\index.html dist\\portfolio\\404.html"
+    "deploy": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod --base-href / && copy dist\\portfolio\\index.html dist\\portfolio\\404.html"
   },
   "private": true,
   "dependencies": {
