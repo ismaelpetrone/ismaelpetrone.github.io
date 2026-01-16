@@ -1,0 +1,37 @@
+<div class="header" [ngClass]="{'dark-menu': isDark}">
+  <a href="/" class="logo">
+    <span class="grey-color"> &lt;</span>
+    <span class="logo-name">{{greeting.username}}</span>
+    <span class="grey-color">/&gt;</span>
+  </a>
+  <input class="menu-btn" type="checkbox" id="menu-btn">
+  <label class="menu-icon" for="menu-btn">
+    <span [ngClass]="{'navicon-dark': isDark}" class="navicon"></span>
+  </label>
+  <ul [ngClass]="{'dark-menu': isDark}" class="menu">
+    <li *ngIf="information.introduction.display">
+      <a href="#hello">{{information.navLinks.hello}}</a>
+    </li>
+    <li>
+      <a href="#about-me">{{information.navLinks.aboutMe}}</a>
+    </li>
+    <li>
+      <a href="#skills">{{information.navLinks.skills}}</a>
+    </li>
+    <li>
+      <a href="#journey">{{information.navLinks.journey}}</a>
+    </li>
+    <li>
+      <a href="#achievements">{{information.navLinks.achievements}}</a>
+    </li>
+    <li>
+      <a href="#featured-projects">{{information.navLinks.featuredProjects}}</a>
+    </li>
+    <li class="utils-li">
+      <button (click)="toggleLanguage()" class="lang-btn" [ngClass]="{'dark-mode-text': isDark}">
+        {{ languageService.getLanguage() === 'en' ? 'ES' : 'EN' }}
+      </button>
+      <app-toggle-switch></app-toggle-switch>
+    </li>
+  </ul>
+</div>

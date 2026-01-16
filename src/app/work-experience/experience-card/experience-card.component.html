@@ -1,0 +1,47 @@
+<div [ngClass]="{'experience-card-dark': isDark, 'experience-card': !isDark}">
+  <div *ngIf="!isProject" [ngStyle]="{'background': rgb()}" class="experience-banner">
+    <div class="experience-blurred_div"></div>
+    <div class="experience-div-company">
+      <h5 class="experience-text-company">{{experience.company}}</h5>
+      <p class="subText">{{experience.short_note}}</p>
+    </div>
+    <img *ngIf="experience.companyLogo" #imgRef crossOrigin="anonymous" class="experience-roundedimg"
+      [src]="experience.companyLogo" [alt]="experience.company" (load)="getColorArrays()">
+  </div>
+
+  <div *ngIf="isProject" class="project-header">
+    <div class="project-title-container">
+      <h5 class="project-title" [ngClass]="{'dark-mode-text':isDark}">
+        {{experience.role}}
+        <a *ngIf="experience.downloadLink" [href]="experience.downloadLink" download class="download-link"
+          title="Download Project">
+          <i class="fas fa-download"></i>
+        </a>
+      </h5>
+      <p class="project-company" [ngClass]="{'dark-mode-text':isDark}">
+        {{experience.company}} - {{experience.short_note}}
+      </p>
+    </div>
+    <div class="project-image-wrapper" *ngIf="experience.companyLogo">
+      <img #imgRef crossOrigin="anonymous" class="project-image" [src]="experience.companyLogo"
+        [alt]="experience.company" (load)="getColorArrays()">
+    </div>
+  </div>
+
+  <div class="experience-text-details">
+    <h5 *ngIf="!isProject" class="experience-text-role" [ngClass]="{'dark-mode-text':isDark}">
+      {{experience.role}}
+    </h5>
+    <h5 class="experience-text-date" [ngClass]="{'dark-mode-text':isDark}">
+      {{experience.date}}
+    </h5>
+    <p class="subTitle experience-text-desc" [ngClass]="{'dark-mode-text':isDark}">
+      {{experience.desc}}
+    </p>
+    <ul>
+      <li *ngFor="let item of experience.keyNotes" class="subTitle" [ngClass]="{'dark-mode-text':isDark}">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+</div>

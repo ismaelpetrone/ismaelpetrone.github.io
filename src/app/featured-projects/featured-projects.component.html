@@ -1,0 +1,11 @@
+<div class="main" id="featured-projects" *ngIf="projectsSection.display">
+    <div class="projects-header-div">
+        <h1 class="projects-title" [ngClass]="{'dark-mode-text': isDarkMode}">{{projectsSection.title}}</h1>
+        <p class="projects-subtitle" [ngClass]="{'dark-mode-text': isDarkMode}">{{projectsSection.subtitle}}</p>
+    </div>
+    <div class="repo-cards-div-main">
+        <div *ngFor="let project of projectsSection.projects">
+            <app-experience-card [item]="project" [isProject]="true"></app-experience-card>
+        </div>
+    </div>
+</div>

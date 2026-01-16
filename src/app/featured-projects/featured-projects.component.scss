@@ -1,0 +1,49 @@
+@import "src/styles";
+
+.main {
+    width: 90%;
+    padding: 20px 10px;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.projects-header-div {
+    text-align: center;
+    /*margin-bottom: 3rem;*/
+}
+
+.projects-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.projects-subtitle {
+    font-size: 20px;
+    color: $subTitle;
+}
+
+.repo-cards-div-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.repo-cards-div-main>div {
+    display: flex;
+}
+
+.dark-mode-text {
+    color: $textColorDark !important;
+}
+
+@media (max-width: 768px) {
+    .projects-title {
+        font-size: 30px;
+    }
+
+    .repo-cards-div-main {
+        grid-template-columns: 1fr;
+    }
+}
