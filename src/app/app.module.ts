@@ -20,6 +20,9 @@ import { FeaturedProjectsComponent } from './featured-projects/featured-projects
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material.module";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { ChatbotDialogComponent } from './chatbot/chatbot-dialog/chatbot-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +42,17 @@ import { HttpClientModule } from '@angular/common/http';
     AchievementsSectionComponent,
     ProjectComponent,
     FeaturedProjectsComponent,
+    ChatbotComponent,
+    ChatbotDialogComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
+  entryComponents: [ChatbotDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

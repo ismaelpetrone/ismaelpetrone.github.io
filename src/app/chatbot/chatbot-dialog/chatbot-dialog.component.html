@@ -1,0 +1,39 @@
+<div class="chat-dialog-container">
+    <div class="chat-header">
+        <div class="avatar">
+            <img src="../../assets/images/intro.jpg" alt="Ismael">
+        </div>
+        <div class="header-info">
+            <h3>Ismael</h3>
+            <p>En línea</p>
+        </div>
+        <button class="close-btn" (click)="close()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="messages-container" #scrollMe>
+        <div *ngFor="let msg of messages" class="message-wrapper" [class.user]="msg.sender === 'user'">
+            <div class="message-bubble">
+                {{ msg.text }}
+                <span class="time">{{ msg.time | date:'HH:mm' }}</span>
+            </div>
+        </div>
+
+        <div *ngIf="isTyping" class="message-wrapper">
+            <div class="message-bubble typing">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Escribe un mensaje..."
+            autofocus>
+        <button class="send-btn" (click)="sendMessage()" [disabled]="!userInput.trim()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+</div>

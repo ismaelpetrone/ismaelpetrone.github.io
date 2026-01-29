@@ -139,3 +139,34 @@ body {
     scroll-snap-type: y proximity;
   }
 }
+
+/* Chatbot Dialog Styles */
+.chat-dialog-panel {
+  .mat-dialog-container {
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.dark-mode .chat-dialog-panel {
+  .mat-dialog-container {
+    background-color: #1a1a1a;
+    color: #e8e8e8;
+  }
+}
+
+@media (max-width: 500px) {
+  .chat-dialog-panel {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+
+    .mat-dialog-container {
+      border-radius: 0;
+    }
+  }
+}
