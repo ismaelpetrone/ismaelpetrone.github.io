@@ -101,16 +101,22 @@ $appHeaderBG: #1a1a1a;
   font-family: 'Lato', sans-serif;
 }
 
-*::-webkit-scrollbar {
-  width: 0 !important
-}
-
-* {
-  overflow: -moz-scrollbars-none;
-}
-
-* {
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  /* Firefox */
   -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
 }
 
 body {

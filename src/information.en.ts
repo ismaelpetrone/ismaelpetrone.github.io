@@ -351,6 +351,16 @@ const majorProjects = {
   display: true
 };
 
+const chatbot = {
+  title: 'Ismael',
+  status: 'Online',
+  placeholder: 'Type a message...',
+  initialMessage: 'Hello, what information do you need about Ismael?',
+  error: 'Max tokens reached',
+  close: 'Close',
+  chat: 'Chat'
+};
+
 export {
   navLinks,
   majorProjects,
@@ -360,5 +370,6 @@ export {
   skillsSection,
   myJourney,
   openSource,
-  achievementSection
+  achievementSection,
+  chatbot
 };

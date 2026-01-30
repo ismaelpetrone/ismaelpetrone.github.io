@@ -16,3 +16,4 @@ export const majorProjects = en.majorProjects;
 export const openSource = en.openSource;
 export const achievementSection = en.achievementSection;
 export const splashScreen = en.splashScreen;
+export const chatbot = en.chatbot;

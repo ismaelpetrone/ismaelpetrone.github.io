@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LanguageService } from '../language.service';
+import { allInformation } from '../../information';
 
 interface Message {
     text: string;
@@ -17,15 +19,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
     isOpen = false;
     userInput = '';
-    messages: Message[] = [
-        { text: 'Hola, ¿qué información necesitas sobre Ismael?', sender: 'bot', time: new Date() }
-    ];
+    messages: Message[] = [];
     sessionId: string;
     isTyping = false;
+    information = allInformation.en;
 
     private apiUrl = 'https://n8n-agentdragon.cgm783.easypanel.host/webhook/f2198185-b2b1-4987-b61d-3da520f13f4d';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private languageService: LanguageService) {
         console.log('ChatbotComponent initialized');
     }
 
@@ -35,6 +36,20 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             this.sessionId = this.generateUUID();
             sessionStorage.setItem('chatSessionId', this.sessionId);
         }
+
+        this.languageService.currentLanguage$.subscribe(lang => {
+            this.information = allInformation[lang];
+            // If it's the first initialization or if the only message is the initial one, update it
+            if (this.messages.length === 0) {
+                this.messages = [
+                    { text: this.information.chatbot.initialMessage, sender: 'bot', time: new Date() }
+                ];
+            } else if (this.messages.length === 1 &&
+                (this.messages[0].text === allInformation.en.chatbot.initialMessage ||
+                    this.messages[0].text === allInformation.es.chatbot.initialMessage)) {
+                this.messages[0].text = this.information.chatbot.initialMessage;
+            }
+        });
     }
 
     ngAfterViewChecked() {
@@ -65,13 +80,16 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             sessionId: this.sessionId
         }, { responseType: 'text' }).subscribe(
             (response: string) => {
-                this.messages.push({ text: response, sender: 'bot', time: new Date() });
+                // Check if response is empty, undefined, or just whitespace
+                const botResponse = (response && response.trim()) ? response : this.information.chatbot.error;
+                this.messages.push({ text: botResponse, sender: 'bot', time: new Date() });
                 this.isTyping = false;
                 this.scrollToBottom();
             },
             (error) => {
                 console.error('Error sending message:', error);
-                this.messages.push({ text: 'Lo siento, hubo un error al conectar con el servidor.', sender: 'bot', time: new Date() });
+                // Showing the requested error message even on network failure as per requirements
+                this.messages.push({ text: this.information.chatbot.error, sender: 'bot', time: new Date() });
                 this.isTyping = false;
                 this.scrollToBottom();
             }

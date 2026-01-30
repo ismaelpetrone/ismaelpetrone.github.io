@@ -183,7 +183,18 @@ export const majorProjects = {
     display: true
 };
 
+export const chatbot = {
+    title: 'Ismael',
+    status: 'En línea',
+    placeholder: 'Escribe un mensaje...',
+    initialMessage: 'Hola, ¿qué información necesitas sobre Ismael?',
+    error: 'Max tokens reached',
+    close: 'Cerrar',
+    chat: 'Chat'
+};
+
 export const openSource = {
+    //... (rest of the file content)
     showGithubProfile: 'true',
     display: false
 };

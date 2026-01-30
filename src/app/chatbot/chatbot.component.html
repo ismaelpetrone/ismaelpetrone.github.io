@@ -6,8 +6,8 @@
                 <img src="../../assets/images/intro.jpg" alt="Ismael">
             </div>
             <div class="header-info">
-                <h3>Ismael</h3>
-                <p>En línea</p>
+                <h3>{{ information.chatbot.title }}</h3>
+                <p>{{ information.chatbot.status }}</p>
             </div>
             <button class="close-btn" (click)="toggleChat()">
                 <i class="fas fa-times"></i>
@@ -32,8 +32,8 @@
         </div>
 
         <div class="input-area">
-            <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Escribe un mensaje..."
-                autofocus>
+            <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()"
+                [placeholder]="information.chatbot.placeholder" autofocus>
             <button class="send-btn" (click)="sendMessage()" [disabled]="!userInput.trim()">
                 <i class="fas fa-arrow-up"></i>
             </button>
@@ -45,7 +45,7 @@
         <button class="fab-button" (click)="toggleChat()">
             <div class="button-content">
                 <i class="fas" [ngClass]="isOpen ? 'fa-chevron-down' : 'fa-comments'"></i>
-                <span class="button-text">{{ isOpen ? 'Cerrar' : 'Chat' }}</span>
+                <span class="button-text">{{ isOpen ? information.chatbot.close : information.chatbot.chat }}</span>
             </div>
         </button>
     </div>
